@@ -234,7 +234,7 @@ class MapPageState extends State<MapPage> {
 
       // the trick is to remove the marker (by id)
       // and add it again at the updated location
-      _markers.removeWhere((m) => m.markerId.toString() == 'sourcePin');
+      _markers.removeWhere((m) => m.markerId.value == 'sourcePin');
       _markers.add(Marker(
           markerId: MarkerId('sourcePin'),
           onTap: () {
