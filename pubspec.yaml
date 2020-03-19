@@ -21,5 +21,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+
   assets:
-    - assets/
+    - assets/destination_map_marker.png
+    - assets/driving_pin.png
+    - assets/friend1.jpg
+    - assets/friend2.jpg
