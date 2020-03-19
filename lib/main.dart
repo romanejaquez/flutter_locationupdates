@@ -127,10 +127,9 @@ class MapPageState extends State<MapPage> {
                 // i'm ready to show the pins on the map
                 showPinsOnMap();
               }),
-              MapPinPillComponent(
-                  pinPillPosition: pinPillPosition,
-                  currentlySelectedPin: currentlySelectedPin
-              )
+          MapPinPillComponent(
+              pinPillPosition: pinPillPosition,
+              currentlySelectedPin: currentlySelectedPin)
         ],
       ),
     );
@@ -146,20 +145,18 @@ class MapPageState extends State<MapPage> {
         LatLng(destinationLocation.latitude, destinationLocation.longitude);
 
     sourcePinInfo = PinInformation(
-      locationName: "Start Location",
-      location: SOURCE_LOCATION,
-      pinPath: "assets/driving_pin.png",
-      avatarPath: "assets/friend1.jpg",
-      labelColor: Colors.blueAccent
-    );
+        locationName: "Start Location",
+        location: SOURCE_LOCATION,
+        pinPath: "assets/driving_pin.png",
+        avatarPath: "assets/friend1.jpg",
+        labelColor: Colors.blueAccent);
 
     destinationPinInfo = PinInformation(
-      locationName: "End Location",
-      location: DEST_LOCATION,
-      pinPath: "assets/destination_map_marker.png",
-      avatarPath: "assets/friend2.jpg",
-      labelColor: Colors.purple
-    );
+        locationName: "End Location",
+        location: DEST_LOCATION,
+        pinPath: "assets/destination_map_marker.png",
+        avatarPath: "assets/friend2.jpg",
+        labelColor: Colors.purple);
 
     // add the initial source location pin
     _markers.add(Marker(
@@ -189,17 +186,17 @@ class MapPageState extends State<MapPage> {
   }
 
   void setPolylines() async {
-      List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
-          googleAPIKey,
-          currentLocation.latitude,
-          currentLocation.longitude,
-          destinationLocation.latitude,
-          destinationLocation.longitude);
+    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
+        googleAPIKey,
+        currentLocation.latitude,
+        currentLocation.longitude,
+        destinationLocation.latitude,
+        destinationLocation.longitude);
 
-      if (result.isNotEmpty) {
-        result.forEach((PointLatLng point) {
-          polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-        });
+    if (result.isNotEmpty) {
+      result.forEach((PointLatLng point) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      });
 
       setState(() {
         _polylines.add(Polyline(
