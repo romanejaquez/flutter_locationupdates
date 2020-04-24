@@ -27,7 +27,7 @@ class MapPageState extends State<MapPage> {
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints;
-  String googleAPIKey = '<YOUR_API_KEY>';
+  String googleAPIKey = '<API_KEY>';
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
@@ -72,12 +72,17 @@ class MapPageState extends State<MapPage> {
   }
 
   void setSourceAndDestinationIcons() async {
-    sourceIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(devicePixelRatio: 2.5), 'assets/driving_pin.png');
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(devicePixelRatio: 2.0), 'assets/driving_pin.png')
+        .then((onValue) {
+      sourceIcon = onValue;
+    });
 
-    destinationIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(devicePixelRatio: 2.5),
-        'assets/destination_map_marker.png');
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.0),
+            'assets/destination_map_marker.png')
+        .then((onValue) {
+      destinationIcon = onValue;
+    });
   }
 
   void setInitialLocation() async {
@@ -200,7 +205,7 @@ class MapPageState extends State<MapPage> {
 
       setState(() {
         _polylines.add(Polyline(
-            width: 5, // set the width of the polylines
+            width: 2, // set the width of the polylines
             polylineId: PolylineId("poly"),
             color: Color.fromARGB(255, 40, 122, 198),
             points: polylineCoordinates));
