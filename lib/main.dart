@@ -58,17 +58,23 @@ class MapPageState extends State<MapPage> {
 
     // subscribe to changes in the user's location
     // by "listening" to the location's onLocationChanged event
+    // when maps is closed it does not give state error
+      if(mounted){
     location.onLocationChanged().listen((LocationData cLoc) {
       // cLoc contains the lat and long of the
       // current user's position in real time,
       // so we're holding on to it
+      // I have put if condition to change only on location change
+    if(currentLocation != cLoc){
       currentLocation = cLoc;
       updatePinOnMap();
+    }
     });
     // set custom marker pins
     setSourceAndDestinationIcons();
     // set the initial location
     setInitialLocation();
+    }
   }
 
   void setSourceAndDestinationIcons() async {
